@@ -20,7 +20,7 @@ export function ProductCard({id, name, price, imageUrl, category}: Product){
                 <Currency>R$</Currency>
                 <Price>{price}</Price>
                 </PriceRow>
-                <AddButton type="button" onClick={() => handleSaveCart()}>Adicionar ao carrinho</AddButton>
+                <AddButton type="button" onClick={handleSaveCart}>Adicionar ao carrinho</AddButton>
             </Body>
         </Card>
     )
