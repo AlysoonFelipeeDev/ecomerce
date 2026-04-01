@@ -14,7 +14,7 @@ export function Cart() {
         <Panel aria-label="Carrinho de compras">
             <PanelHeader>
             <PanelTitle>Seu carrinho</PanelTitle>
-            <PanelSubtitle>Revise os itens antes de finalizar.</PanelSubtitle>
+            <PanelSubtitle>{items.length === 0 ? "Adicione items ao seu carrinho!" :"Revise os itens antes de finalizar."}</PanelSubtitle>
             </PanelHeader>
             <ItemList>
                 {items.map((item) => (
@@ -60,7 +60,7 @@ const Panel = styled.aside`
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
-    max-height: calc(100vh - 0px);
+    max-height: calc(100vh - 100px);
     background: #fff;
     border-left: 1px solid #e2e8f0;
     box-shadow: -8px 0 32px rgba(22, 33, 62, 0.06);
