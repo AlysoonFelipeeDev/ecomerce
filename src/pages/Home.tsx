@@ -1,14 +1,14 @@
-import styled, { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle, keyframes } from "styled-components";
 import { ProductCard } from "../components/ProductCard";
 import { Header } from "../components/Header";
 import { Cart } from "../components/Cart";
 import { useProducts } from "../hooks/useProducts";
 import { useState } from "react";
+import { Loader2 } from "lucide-react";
 
 export function Home() {
     const {products, isError, isLoading} = useProducts()
     const [modalCart, setModalCart] = useState<boolean>(false)
-    if(isLoading) return <div>CARREGANDO...</div>
     if(isError) return <div>Algo deu errado</div>
 
     return (
@@ -22,7 +22,8 @@ export function Home() {
                         <PageTitle>Catálogo</PageTitle>
                         </MainHeader>
                         <Grid>
-                            {products.map(prod => (
+                            {isLoading ? <LoadingWrapper><SpinnerIcon size={48}/></LoadingWrapper> : 
+                            products.map(prod => (
                                 <ProductCard
                                 id={prod.id}
                                 key={prod.id}
@@ -31,7 +32,8 @@ export function Home() {
                                 name={prod.name}
                                 price={prod.price}
                                 />
-                            ))}
+                            ))
+                            }
                         </Grid>
                     </Main>
                     {modalCart && <Cart />}
@@ -60,6 +62,21 @@ const GlobalStyle = createGlobalStyle`
     }
 `
 
+const LoadingWrapper = styled.div`
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+`
+
+const spin = keyframes `
+    from {transform: rotate(0deg)}
+    to {transform: rotate(360deg)}
+`
+
+const SpinnerIcon = styled(Loader2)`
+    animation: ${spin} 1s linear infinite
+`
 
 const Page = styled.div`
     min-height: 100vh;
