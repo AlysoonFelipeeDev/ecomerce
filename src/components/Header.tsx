@@ -2,20 +2,24 @@ import { ShoppingCartIcon } from "lucide-react"
 import styled from "styled-components"
 import { useAppSelector } from "../store/reduxHooks"
 
-export function Header(){
+interface HeaderProps {
+    onCartClick: () => void
+}
+
+export function Header({onCartClick}: HeaderProps){
     const items = useAppSelector(state => state.cart.items)
     const itemCount = items.reduce((acc, item) => acc + item.quantity, 0)
     
     return (
         <ContainerHeader>
             <Brand>
-                <Logo>Shop</Logo>
+                <Logo>Universe</Logo>
                 <Tagline>Produtos</Tagline>
             </Brand>
             <Actions>
-                <CartButton>
+                <CartButton onClick={onCartClick}>
                 <ShoppingCartIcon/>
-                <CartLabel>Carrinho</CartLabel>
+                <CartLabel >Carrinho</CartLabel>
                 <Notice>{itemCount}</Notice>
                 </CartButton>
             </Actions>

@@ -8,8 +8,8 @@ export function Cart() {
     const handleRemoveItem = (id: string) => { dispatch(removeItem(id))}
     const handleIncreaseQuantity = (id: string) => {dispatch(increaseQuantity(id))}
     const handleDecreaseQuantity = (id: string) => {dispatch(decreaseQuantity(id))}
-    const total = items.reduce((acc, item) => acc + item.price * item.quantity, 0)
-    
+    const total = items.reduce((acc, item) => acc + Number(item.price) * item.quantity, 0)
+
     return (
         <Panel aria-label="Carrinho de compras">
             <PanelHeader>
@@ -38,7 +38,7 @@ export function Cart() {
                             </QtyBtn>
                             </QtyWrap>
                         </div>
-                        <LineTotal>R$ {item.price * item.quantity}</LineTotal>
+                        <LineTotal>R$ {Number(item.price) * item.quantity}</LineTotal>
                         </ItemBottom>
                     </ItemMain>
                     </Item>
