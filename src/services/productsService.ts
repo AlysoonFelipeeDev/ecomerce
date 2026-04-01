@@ -7,6 +7,7 @@ export const productService = {
         const products = response.data.products.map(prod => {
             return {
                 ...prod,
+                id: prod.id.toString(),
                 name: prod.title,
                 imageUrl: prod.thumbnail,
             }  
